@@ -26,6 +26,8 @@
 
 Welcome to the **Futuristic Gadgets Lab** container deployment matrix. We are the architects of digital rebellion, the masters of containerized chaos, and the guardians of self-hosted supremacy. Our mission: **Democratize the digital landscape through powerful, accessible, and badass container templates.**
 
+**ARSENAL STATUS:** `19 APPLICATIONS LOADED` | **MEDIA STACK:** `FULLY OPERATIONAL` | **AUTOMATION:** `ENGAGED`
+
 ### ⚡ WHAT WE ARE
 - **Digital Freedom Fighters**: Breaking the chains of cloud dependency
 - **Container Ninjas**: Deploying applications with surgical precision  
@@ -72,14 +74,32 @@ Click "Save Settings" → Watch the magic happen ✨
 
 ## 🏴‍☠️ APPLICATION ARSENAL
 
+> **Total Deployed:** `19 Combat-Ready Applications`  
+> **Categories:** Media • Security • Downloads • Automation • Books • Development
+
 ### 🎵 MEDIA WARFARE DIVISION
 | Application | Function | Port | Status |
 |-------------|----------|------|--------|
+| **Plex** | Media Server & Streaming | 32400 | 🎬 ACTIVE |
 | **Airsonic** | Music Streaming Server | 4040 | ⚡ ACTIVE |
 | **Bazarr** | Subtitle Management | 6767 | ⚡ ACTIVE |
 | **Beets** | Music Library Organizer | 8337 | ⚡ ACTIVE |
 | **Booksonic** | Audiobook Streaming | 4040 | ⚡ ACTIVE |
 | **Headphones** | Music Collection Manager | 8181 | ⚡ ACTIVE |
+
+### 🎯 MEDIA MANAGEMENT BATTALION
+| Application | Function | Port | Status |
+|-------------|----------|------|--------|
+| **Radarr** | Movie Collection Manager | 7878 | 🎬 ACTIVE |
+| **Sonarr** | TV Series Manager | 8989 | 📺 ACTIVE |
+| **Prowlarr** | Indexer Manager | 9696 | 🔍 ACTIVE |
+| **Overseerr** | Request Management | 5055 | 📋 ACTIVE |
+
+### 📥 DOWNLOAD & NETWORKING BATTALION
+| Application | Function | Port | Status |
+|-------------|----------|------|--------|
+| **qBittorrent** | Torrent Client | 8080 | ⬇️ ACTIVE |
+| **Samba** | Network File Sharing | 139/445 | 🗂️ ACTIVE |
 
 ### 🛡️ SECURITY & AUTH BATTALION
 | Application | Function | Port | Status |
@@ -93,6 +113,12 @@ Click "Save Settings" → Watch the magic happen ✨
 | **Heimdall** | Application Dashboard | 80/443 | 🖥️ MONITORING |
 | **Homer** | Static Service Dashboard | 8902 | 🖥️ MONITORING |
 | **EmbyStat** | Media Server Analytics | 6555 | 📈 ANALYZING |
+
+### 📚 KNOWLEDGE & AUTOMATION COMMAND
+| Application | Function | Port | Status |
+|-------------|----------|------|--------|
+| **Calibre** | eBook Library Manager | 8080/8181 | 📖 ACTIVE |
+| **Home Assistant** | Home Automation Platform | 8123 | 🏠 ACTIVE |
 
 ### 🔧 DEVELOPMENT ARSENAL (v3/default-template.json)
 | Category | Applications | Purpose |
@@ -128,18 +154,24 @@ cd GS-Templates
 
 ### METHOD 3: MANUAL CONTAINER SPAWNING
 ```bash
-# Example: Deploy Airsonic manually
+# Example: Deploy Plex Media Server manually
 docker run -d \
-  --name=airsonic \
+  --name=plex \
   -e PUID=1000 \
   -e PGID=100 \
-  -e CONTEXT_PATH=airsonic \
-  -e JAVA_OPTS="-Xms256m -Xmx512m" \
-  -p 4040:4040 \
-  -v /portainer/Music:/music \
-  -v /portainer/Files/AppData/Config/Airsonic:/config \
+  -e TZ=Etc/UTC \
+  -e VERSION=docker \
+  -p 32400:32400 \
+  -p 1900:1900/udp \
+  -p 5353:5353/udp \
+  -v /portainer/Files/AppData/Config/Plex:/config \
+  -v /portainer/TV:/tv \
+  -v /portainer/Movies:/movies \
   --restart unless-stopped \
-  linuxserver/airsonic:latest
+  lscr.io/linuxserver/plex:latest
+
+# Example: Deploy complete *arr stack
+docker-compose up -d radarr sonarr prowlarr overseerr
 ```
 
 ---
@@ -151,8 +183,8 @@ docker run -d \
 ├── v2/
 │   ├── template.json          # Legacy format (900+ templates)
 ├── v3/
-│   ├── default-template.json  # Standard Portainer templates
-│   └── gs-template.json       # Custom FUGA collection
+│   ├── default-template.json  # Standard Portainer templates (69 apps)
+│   └── gs-template.json       # Custom FUGA collection (19 apps)
 ```
 
 ### TEMPLATE STRUCTURE
@@ -201,10 +233,11 @@ docker run -d \
 
 ### TEMPLATE STANDARDS
 - ✅ Must include proper documentation
-- ✅ Follow naming conventions
+- ✅ Follow naming conventions (LinuxServer.io preferred)
 - ✅ Include appropriate categories
-- ✅ Test on multiple architectures
-- ✅ Provide default configurations
+- ✅ Test on multiple architectures (amd64/arm64)
+- ✅ Provide default configurations with PUID/PGID
+- ✅ Use proper volume mappings for data persistence
 
 ### SUBMISSION CHECKLIST
 - [ ] Template validates against schema
@@ -247,11 +280,15 @@ The Futuristic Gadgets Lab assumes no responsibility for misuse.
 [SYSTEM MESSAGE]
 Template arsenal loaded successfully.
 Container deployment matrix: ONLINE
-Hacker mode: ENGAGED
+Media management stack: OPERATIONAL
+Home automation: ENGAGED
+Download battalion: ARMED
+Hacker mode: FULLY ACTIVATED
 Ready for digital domination.
 
 > Futuristic Gadgets Lab © 2024
 > "The future is self-hosted"
+> "Your data, your rules, your kingdom"
 ```
 
 ---

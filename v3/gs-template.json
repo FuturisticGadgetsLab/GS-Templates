@@ -395,6 +395,445 @@
                     "container": "/www/config.yml"
                 }
             ]
+        },
+        {
+            "id": 11,
+            "categories": [
+                "Video",
+                "Music"
+            ],
+            "description": "Plex is a global streaming media service and a client–server media player platform, made by Plex, Inc. Organize, beautify, stream, and share your personal media collections.",
+            "env": [
+                {
+                    "default": "1000",
+                    "label": "PUID",
+                    "name": "PUID"
+                },
+                {
+                    "default": "100",
+                    "label": "PGID",
+                    "name": "PGID"
+                },
+                {
+                    "label": "TZ",
+                    "name": "TZ",
+                    "default": "Etc/UTC"
+                },
+                {
+                    "label": "VERSION",
+                    "name": "VERSION",
+                    "default": "docker",
+                    "preset": true
+                }
+            ],
+            "image": "lscr.io/linuxserver/plex:latest",
+            "logo": "https://raw.githubusercontent.com/SelfhostedPro/selfhosted_templates/master/Images/plex-icon.png",
+            "name": "plex",
+            "platform": "linux",
+            "ports": [
+                "32400:32400/tcp",
+                "1900:1900/udp",
+                "5353:5353/udp",
+                "8324:8324/tcp",
+                "32410:32410/udp",
+                "32412:32412/udp",
+                "32413:32413/udp",
+                "32414:32414/udp",
+                "32469:32469/tcp"
+            ],
+            "restart_policy": "unless-stopped",
+            "title": "Plex",
+            "type": 1,
+            "note": "Hardware transcoding requires additional setup. See <a href='https://docs.linuxserver.io/images/docker-plex/'>LinuxServer documentation</a> for details.",
+            "volumes": [
+                {
+                    "bind": "/portainer/Files/AppData/Config/Plex",
+                    "container": "/config"
+                },
+                {
+                    "bind": "/portainer/TV",
+                    "container": "/tv"
+                },
+                {
+                    "bind": "/portainer/Movies",
+                    "container": "/movies"
+                },
+                {
+                    "bind": "/portainer/Music",
+                    "container": "/music"
+                },
+                {
+                    "bind": "/portainer/Files/Transcode",
+                    "container": "/transcode"
+                }
+            ]
+        },
+        {
+            "id": 12,
+            "categories": [
+                "Video",
+                "Tools"
+            ],
+            "description": "Radarr is a movie collection manager for Usenet and BitTorrent users. It can monitor multiple RSS feeds for new movies and will interface with clients and indexers to grab, sort, and rename them.",
+            "env": [
+                {
+                    "default": "1000",
+                    "label": "PUID",
+                    "name": "PUID"
+                },
+                {
+                    "default": "100",
+                    "label": "PGID",
+                    "name": "PGID"
+                },
+                {
+                    "label": "TZ",
+                    "name": "TZ",
+                    "default": "Etc/UTC"
+                }
+            ],
+            "image": "lscr.io/linuxserver/radarr:latest",
+            "logo": "https://raw.githubusercontent.com/SelfhostedPro/selfhosted_templates/master/Images/radarr.png",
+            "name": "radarr",
+            "platform": "linux",
+            "ports": [
+                "7878:7878/tcp"
+            ],
+            "restart_policy": "unless-stopped",
+            "title": "Radarr",
+            "type": 1,
+            "volumes": [
+                {
+                    "bind": "/portainer/Files/AppData/Config/Radarr",
+                    "container": "/config"
+                },
+                {
+                    "bind": "/portainer/Movies",
+                    "container": "/movies"
+                },
+                {
+                    "bind": "/portainer/Downloads",
+                    "container": "/downloads"
+                }
+            ]
+        },
+        {
+            "id": 13,
+            "categories": [
+                "Video",
+                "Tools"
+            ],
+            "description": "Sonarr is a PVR for Usenet and BitTorrent users. It can monitor multiple RSS feeds for new episodes of your favorite shows and will interface with clients and indexers to grab, sort, and rename them.",
+            "env": [
+                {
+                    "default": "1000",
+                    "label": "PUID",
+                    "name": "PUID"
+                },
+                {
+                    "default": "100",
+                    "label": "PGID",
+                    "name": "PGID"
+                },
+                {
+                    "label": "TZ",
+                    "name": "TZ",
+                    "default": "Etc/UTC"
+                }
+            ],
+            "image": "lscr.io/linuxserver/sonarr:latest",
+            "logo": "https://raw.githubusercontent.com/SelfhostedPro/selfhosted_templates/master/Images/sonarr-icon.png",
+            "name": "sonarr",
+            "platform": "linux",
+            "ports": [
+                "8989:8989/tcp"
+            ],
+            "restart_policy": "unless-stopped",
+            "title": "Sonarr",
+            "type": 1,
+            "volumes": [
+                {
+                    "bind": "/portainer/Files/AppData/Config/Sonarr",
+                    "container": "/config"
+                },
+                {
+                    "bind": "/portainer/TV",
+                    "container": "/tv"
+                },
+                {
+                    "bind": "/portainer/Downloads",
+                    "container": "/downloads"
+                }
+            ]
+        },
+        {
+            "id": 14,
+            "categories": [
+                "Video",
+                "Tools"
+            ],
+            "description": "Prowlarr is an indexer manager/proxy built on the popular *arr .net/reactjs base stack to integrate with your various PVR apps. Prowlarr supports management of both Torrent Trackers and Usenet Indexers.",
+            "env": [
+                {
+                    "default": "1000",
+                    "label": "PUID",
+                    "name": "PUID"
+                },
+                {
+                    "default": "100",
+                    "label": "PGID",
+                    "name": "PGID"
+                },
+                {
+                    "label": "TZ",
+                    "name": "TZ",
+                    "default": "Etc/UTC"
+                }
+            ],
+            "image": "lscr.io/linuxserver/prowlarr:latest",
+            "logo": "https://raw.githubusercontent.com/SelfhostedPro/selfhosted_templates/master/Images/prowlarr-logo.png",
+            "name": "prowlarr",
+            "platform": "linux",
+            "ports": [
+                "9696:9696/tcp"
+            ],
+            "restart_policy": "unless-stopped",
+            "title": "Prowlarr",
+            "type": 1,
+            "volumes": [
+                {
+                    "bind": "/portainer/Files/AppData/Config/Prowlarr",
+                    "container": "/config"
+                }
+            ]
+        },
+        {
+            "id": 15,
+            "categories": [
+                "Video",
+                "Tools"
+            ],
+            "description": "Overseerr is a request management and media discovery tool built to work with your existing Plex ecosystem. It helps you find media you want to watch and automatically requests it.",
+            "env": [
+                {
+                    "default": "1000",
+                    "label": "PUID",
+                    "name": "PUID"
+                },
+                {
+                    "default": "100",
+                    "label": "PGID",
+                    "name": "PGID"
+                },
+                {
+                    "label": "TZ",
+                    "name": "TZ",
+                    "default": "Etc/UTC"
+                }
+            ],
+            "image": "lscr.io/linuxserver/overseerr:latest",
+            "logo": "https://raw.githubusercontent.com/SelfhostedPro/selfhosted_templates/master/Images/overseerr.png",
+            "name": "overseerr",
+            "platform": "linux",
+            "ports": [
+                "5055:5055/tcp"
+            ],
+            "restart_policy": "unless-stopped",
+            "title": "Overseerr",
+            "type": 1,
+            "volumes": [
+                {
+                    "bind": "/portainer/Files/AppData/Config/Overseerr",
+                    "container": "/app/config"
+                }
+            ]
+        },
+        {
+            "id": 16,
+            "categories": [
+                "Downloaders",
+                "Tools"
+            ],
+            "description": "qBittorrent is a cross-platform free and open-source BitTorrent client. This container includes VPN support for secure downloading.",
+            "env": [
+                {
+                    "default": "1000",
+                    "label": "PUID",
+                    "name": "PUID"
+                },
+                {
+                    "default": "100",
+                    "label": "PGID",
+                    "name": "PGID"
+                },
+                {
+                    "label": "TZ",
+                    "name": "TZ",
+                    "default": "Etc/UTC"
+                },
+                {
+                    "label": "WEBUI_PORT",
+                    "name": "WEBUI_PORT",
+                    "default": "8080",
+                    "preset": true
+                },
+                {
+                    "label": "TORRENTING_PORT",
+                    "name": "TORRENTING_PORT",
+                    "default": "6881"
+                }
+            ],
+            "image": "lscr.io/linuxserver/qbittorrent:latest",
+            "logo": "https://raw.githubusercontent.com/SelfhostedPro/selfhosted_templates/master/Images/qbittorrent-icon.png",
+            "name": "qbittorrent",
+            "platform": "linux",
+            "ports": [
+                "8080:8080/tcp",
+                "6881:6881/tcp",
+                "6881:6881/udp"
+            ],
+            "restart_policy": "unless-stopped",
+            "title": "qBittorrent",
+            "type": 1,
+            "note": "For VPN support, consider using qBittorrent with Gluetun or similar VPN containers. Check temporary password in logs on first startup.",
+            "volumes": [
+                {
+                    "bind": "/portainer/Files/AppData/Config/qBittorrent",
+                    "container": "/config"
+                },
+                {
+                    "bind": "/portainer/Downloads",
+                    "container": "/downloads"
+                }
+            ]
+        },
+        {
+            "id": 17,
+            "categories": [
+                "Books",
+                "Tools"
+            ],
+            "description": "Calibre is a powerful and easy to use e-book manager. Users say it's outstanding and a must-have. It'll allow you to do nearly everything and it takes things a step beyond normal e-book software.",
+            "env": [
+                {
+                    "default": "1000",
+                    "label": "PUID",
+                    "name": "PUID"
+                },
+                {
+                    "default": "100",
+                    "label": "PGID",
+                    "name": "PGID"
+                },
+                {
+                    "label": "TZ",
+                    "name": "TZ",
+                    "default": "Etc/UTC"
+                }
+            ],
+            "image": "lscr.io/linuxserver/calibre:latest",
+            "logo": "https://raw.githubusercontent.com/SelfhostedPro/selfhosted_templates/master/Images/calibre-web-icon.png",
+            "name": "calibre",
+            "platform": "linux",
+            "ports": [
+                "8080:8080/tcp",
+                "8181:8181/tcp"
+            ],
+            "restart_policy": "unless-stopped",
+            "title": "Calibre",
+            "type": 1,
+            "note": "Access the desktop application at your-ip:8080 (VNC) and web interface at your-ip:8181. Password is 'abc' by default.",
+            "volumes": [
+                {
+                    "bind": "/portainer/Files/AppData/Config/Calibre",
+                    "container": "/config"
+                },
+                {
+                    "bind": "/portainer/Books",
+                    "container": "/books"
+                }
+            ]
+        },
+        {
+            "id": 18,
+            "categories": [
+                "Network",
+                "Storage"
+            ],
+            "description": "Samba is the standard Windows interoperability suite of programs for Linux and Unix. It allows you to share files and printers over a network.",
+            "env": [
+                {
+                    "default": "1000",
+                    "label": "PUID",
+                    "name": "PUID"
+                },
+                {
+                    "default": "100",
+                    "label": "PGID",
+                    "name": "PGID"
+                },
+                {
+                    "label": "TZ",
+                    "name": "TZ",
+                    "default": "Etc/UTC"
+                }
+            ],
+            "image": "dperson/samba:latest",
+            "logo": "https://raw.githubusercontent.com/SelfhostedPro/selfhosted_templates/master/Images/samba.png",
+            "name": "samba",
+            "platform": "linux",
+            "ports": [
+                "139:139/tcp",
+                "445:445/tcp"
+            ],
+            "restart_policy": "unless-stopped",
+            "title": "Samba",
+            "type": 1,
+            "note": "Configure shares and users via environment variables. See container documentation for setup details.",
+            "volumes": [
+                {
+                    "bind": "/portainer",
+                    "container": "/shares/portainer"
+                }
+            ]
+        },
+        {
+            "id": 19,
+            "categories": [
+                "Home Automation",
+                "Tools"
+            ],
+            "description": "Home Assistant is open source home automation that puts local control and privacy first. Powered by a worldwide community of tinkerers and DIY enthusiasts.",
+            "env": [
+                {
+                    "label": "TZ",
+                    "name": "TZ",
+                    "default": "Etc/UTC"
+                }
+            ],
+            "image": "ghcr.io/home-assistant/home-assistant:stable",
+            "logo": "https://raw.githubusercontent.com/SelfhostedPro/selfhosted_templates/master/Images/homeassistant.png",
+            "name": "homeassistant",
+            "platform": "linux",
+            "ports": [
+                "8123:8123/tcp"
+            ],
+            "restart_policy": "unless-stopped",
+            "title": "Home Assistant",
+            "type": 1,
+            "privileged": true,
+            "note": "For full functionality, consider using host networking and privileged mode for hardware access. Initial setup wizard available at your-ip:8123.",
+            "volumes": [
+                {
+                    "bind": "/portainer/Files/AppData/Config/HomeAssistant",
+                    "container": "/config"
+                },
+                {
+                    "bind": "/etc/localtime",
+                    "container": "/etc/localtime",
+                    "readonly": true
+                }
+            ]
         }
     ]
 }
